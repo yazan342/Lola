@@ -27,7 +27,7 @@ class AuthController extends Controller
 
 
         if ($validator->fails()) {
-            return apiErrors($validator->errors(), 422);
+            return apiErrors($validator->errors());
         }
 
         $user = User::create([
@@ -39,12 +39,15 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('auth_token')->accessToken;
+        $cart = Cart::query()->where('user_id', $user->id)->first();
+        if (!$cart) {
+            Cart::create([
+                'user_id' => $user->id,
+            ]);
+        }
 
-        Cart::create([
-            'user_id' => $user->id,
-        ]);
 
-        return apiResponse("User registered successfully", new UserResource($user, $token), 201);
+        return apiResponse("User registered successfully", new UserResource($user, $token));
     }
 
 
@@ -59,18 +62,18 @@ class AuthController extends Controller
 
 
         if ($validator->fails()) {
-            return apiErrors($validator->errors(), 422);
+            return apiErrors($validator->errors());
         }
 
         if (!Auth::attempt($request->only('email', 'password'))) {
 
-            return apiErrors('Invalid login credentials', 422);
+            return apiErrors('Invalid login credentials');
         }
 
         $user = User::where('email', $request->email)->first();
         $token = $user->createToken('auth_token')->accessToken;
 
-        return apiResponse("User logged in successfully", new UserResource($user, $token), 200);
+        return apiResponse("Logged in successfully", new UserResource($user, $token));
     }
 
     public function updateUser(Request $request): JsonResponse
@@ -114,7 +117,7 @@ class AuthController extends Controller
         return apiResponse('User information', $user);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->token()->revoke();
         return apiResponse('Logged out successfully');

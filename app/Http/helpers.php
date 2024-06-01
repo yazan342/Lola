@@ -1,7 +1,7 @@
 <?php
 
 
-function apiResponse($message = "success", $data = null, $status = 200)
+function apiResponse($message, $data = "", $status = "success")
 {
     return response()->json([
         'data' => $data,
@@ -11,7 +11,7 @@ function apiResponse($message = "success", $data = null, $status = 200)
 }
 
 
-function apiErrors($message, $status = 400)
+function apiErrors($message, $status = "error")
 {
     return response()->json([
         'message' => $message,
