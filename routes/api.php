@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CakeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -29,9 +31,20 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::get('/get-categories', [HomeController::class, 'getCategories']);
     Route::get('/get-cakes/{category_id}', [HomeController::class, 'getCakesByCategory']);
+    Route::get('/get-cake/{cake_id}', [HomeController::class, 'getCakeById']);
 
 
     Route::get('/cart', [CartController::class, 'getUserCart']);
     Route::post('/cart/add', [CartController::class, 'addToCart']);
     Route::delete('/cart/remove/{cake_id}', [CartController::class, 'removeCakeFromCart']);
+
+
+    Route::post('/cake/create', [CakeController::class, 'createCake']);
+    Route::post('/cake/update/{cake_id}', [CakeController::class, 'updateCake']);
+    Route::delete('/cake/delete/{cake_id}', [CakeController::class, 'destroy']);
+
+
+    Route::post('/category/create', [CategoryController::class, 'createCategory']);
+    Route::post('/category/update/{category_id}', [CategoryController::class, 'updateCategory']);
+    Route::delete('/category/delete/{category_id}', [CategoryController::class, 'destroy']);
 });

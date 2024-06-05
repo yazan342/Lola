@@ -35,4 +35,22 @@ class HomeController extends Controller
             return apiErrors($e->getMessage());
         }
     }
+
+
+
+    public function getCakeById($id): JsonResponse
+    {
+        try {
+            $cake = Cake::query()->where('id', '=', $id)->first();
+
+
+            if (!$cake) {
+                return apiErrors('Invalid cake ID');
+            }
+
+            return apiResponse('Cake retrieved successfully', CakeResource::make($cake));
+        } catch (Exception $e) {
+            return apiErrors($e->getMessage());
+        }
+    }
 }
