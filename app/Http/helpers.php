@@ -16,5 +16,5 @@ function apiErrors($message, $status = "error")
     return response()->json([
         'message' => $message,
         'status' => $status,
-    ]);
+    ])->setStatusCode(405);
 }

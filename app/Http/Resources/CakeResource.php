@@ -29,6 +29,7 @@ class CakeResource extends JsonResource
             'image' => $this->image,
             'flavor' => $this->flavor,
             'number_of_people' => $this->number_of_people,
+            'price' => $this->price,
             'is_in_cart' => $isInCart,
         ];
     }
