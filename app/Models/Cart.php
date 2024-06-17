@@ -30,4 +30,10 @@ class Cart extends Model
     {
         return $this->hasMany(CartCake::class, 'cart_id');
     }
+
+
+    public function cartCustomCakes(): HasMany
+    {
+        return $this->hasMany(CartCustomCake::class, 'cart_id');
+    }
 }

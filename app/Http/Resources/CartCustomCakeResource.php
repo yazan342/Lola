@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CartResource extends JsonResource
+class CartCustomCakeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,8 @@ class CartResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'cakes' => CartCakeResource::collection($this->cartCakes),
-            'custom_cakes' => CartCustomCakeResource::collection($this->cartCustomCakes),
+            'custom_cake' => new CustomCakeResource($this->custom_cakes),
+            'quantity' => $this->quantity,
         ];
     }
 }

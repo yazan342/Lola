@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CakeSeeder::class,
             CartCakeSeeder::class,
+            ColorSeeder::class,
+            FlavorSeeder::class,
+            ToppingSeeder::class,
+            ShapeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
