@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomCakeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,9 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
     Route::post('/custom-cake/create', [CustomCakeController::class, 'createCustomCake']);
+
+
+
+    Route::post('/order', [OrderController::class, 'createOrder']);
+    Route::get('/order/history', [OrderController::class, 'orderHistory']);
 });

@@ -31,4 +31,9 @@ class Cake extends Model
     {
         return $this->hasMany(CartCake::class, 'cake_id');
     }
+
+    public function orderCakes(): HasMany
+    {
+        return $this->hasMany(OrderCake::class, 'cake_id');
+    }
 }
