@@ -19,9 +19,23 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = [
+            'Birthday Cakes',
+            'Wedding Cakes',
+            'Graduation Cakes',
+            'Valentine Cakes'
+        ];
+
+        $images = [
+            'birthday.jpg',
+            'wedding.jpg',
+            'graduation.jpg',
+            'valentine.jpg',
+        ];
+
         return [
-            'title' => $this->faker->word,
-            'image' => $this->faker->imageUrl(640, 480, 'food', true, 'cakes')
+            'title' => $this->faker->randomElement($categories),
+            'image' => $this->faker->randomElement($images)
         ];
     }
 }

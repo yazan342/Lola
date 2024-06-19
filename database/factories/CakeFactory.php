@@ -21,14 +21,36 @@ class CakeFactory extends Factory
      */
     public function definition(): array
     {
+        $flavors = [
+            'vanilla', 'chocolate', 'strawberry', 'lemon', 'carrot', 'red velvet', 'black forest', 'cheesecake', 'banana', 'coffee', 'pistachio'
+        ];
 
-        $price = number_format($this->faker->randomFloat(2, 5, 100), 2);
+        $adjectives = [
+            'Delicious', 'Scrumptious', 'Tasty', 'Mouth-watering', 'Decadent', 'Luscious', 'Heavenly', 'Yummy', 'Delectable', 'Savory'
+        ];
+
+        $types = [
+            'Cake', 'Pastry', 'Tart', 'Cupcake', 'Gateau', 'Torte'
+        ];
+
+        $numberOfPeople = $this->faker->numberBetween(1, 20);
+        $pricePerPerson = $this->faker->randomFloat(2, 1.5, 5.0); // Price per person between $1.50 and $5.00
+        $price = number_format($numberOfPeople * $pricePerPerson, 2);
+
+
+        $images = [
+            'cake1.jpg',
+            'cake2.jpg',
+            'cake3.jpg',
+            'cake4.jpg',
+            'cake5.jpg',
+        ];
 
         return [
-            'name' => $this->faker->word,
-            'flavor' => $this->faker->word,
-            'image' => $this->faker->imageUrl(640, 480, 'food', true, 'cakes'),
-            'number_of_people' => $this->faker->numberBetween(1, 20),
+            'name' => $this->faker->randomElement($adjectives) . ' ' . $this->faker->randomElement($types),
+            'flavor' => $this->faker->randomElement($flavors),
+            'image' => $this->faker->randomElement($images),
+            'number_of_people' => $numberOfPeople,
             'price' => $price,
             'category_id' => Category::factory()
         ];
