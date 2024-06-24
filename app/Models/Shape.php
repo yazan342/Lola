@@ -21,6 +21,6 @@ class Shape extends Model
 
     public function custom_cakes(): HasMany
     {
-        return $this->hasMany(CustomCake::class, 'topping_id', 'id');
+        return $this->hasMany(CustomCake::class, 'shape_id', 'id');
     }
 }

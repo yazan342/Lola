@@ -22,6 +22,6 @@ class Flavor extends Model
 
     public function custom_cakes(): HasMany
     {
-        return $this->hasMany(CustomCake::class, 'topping_id', 'id');
+        return $this->hasMany(CustomCake::class, 'flavor_id', 'id');
     }
 }

@@ -19,6 +19,6 @@ class Color extends Model
 
     public function custom_cakes(): HasMany
     {
-        return $this->hasMany(CustomCake::class, 'topping_id', 'id');
+        return $this->hasMany(CustomCake::class, 'color_id', 'id');
     }
 }

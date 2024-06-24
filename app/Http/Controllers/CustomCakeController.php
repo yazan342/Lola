@@ -78,9 +78,8 @@ class CustomCakeController extends Controller
             return apiErrors($validator->errors());
         }
 
-        $image = $request->file('image');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('images'), $imageName);
+
+
 
         $custom_cake = new CustomCake();
         $custom_cake->flavor_id = $request->flavor_id;
@@ -96,6 +95,9 @@ class CustomCakeController extends Controller
         $totalPrice = $colorPrice->price + $flavorPrice->price + $shapePrice->price + $toppingPrice->price;
         $custom_cake->price = strval($totalPrice);
         if ($request->has('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);
             $custom_cake->image = $imageName;
         }
         if ($request->has('text')) {
