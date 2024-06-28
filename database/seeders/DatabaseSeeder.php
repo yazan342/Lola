@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class,
             CakeSeeder::class,
-            CartCakeSeeder::class,
+            // CartCakeSeeder::class,
             ColorSeeder::class,
-            FlavorSeeder::class,
-            ToppingSeeder::class,
-            ShapeSeeder::class,
+            // FlavorSeeder::class,
+            // ToppingSeeder::class,
+            // ShapeSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
